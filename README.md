@@ -1,58 +1,49 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ExploreSulbar — Sistem E-Ticketing Destinasi Wisata Sulawesi Barat
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi web pemesanan tiket elektronik (*e-ticketing*) berbasis QR Code untuk destinasi wisata di Provinsi Sulawesi Barat. Sistem ini dirancang dengan dua aktor utama: **Wisatawan (Pembeli)** yang dapat memesan tiket secara cepat tanpa wajib membuat akun, serta **Petugas Wisata (Penjual / Pengelola)** yang mengelola destinasi, memverifikasi pembayaran, dan memindai QR Code tiket pengunjung di pintu masuk.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🔗 Tautan Aplikasi & Repository
+- **Live Website:** `http://prezekc.infinityfree.me` *(atau `https://prezekc.infinityfree.me` setelah SSL aktif)*
+- **Repository GitHub:** `https://github.com/Hasanah977/wisata-sulbar-eticket`
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 👥 Panduan Akses & Informasi Pengguna (Pembeli & Penjual)
 
-## Learning Laravel
+### 1. User Pembeli — Wisatawan (Pengunjung)
+Wisatawan tidak perlu melakukan registrasi atau login untuk membeli tiket (*frictionless booking*).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Halaman Akses:** `/` (Halaman Beranda)
+- **Alur Penggunaan:**
+  1. Buka halaman utama aplikasi untuk melihat katalog destinasi wisata Sulawesi Barat (lokasi, harga tiket, kuota, dan deskripsi).
+  2. Pilih destinasi yang diinginkan lalu klik **Pesan Tiket**.
+  3. Isi formulir pemesanan (Nama Lengkap, Nomor WhatsApp/Email, Tanggal Kunjungan, dan Jumlah Tiket).
+  4. Lakukan konfirmasi pembayaran sesuai instruksi yang tampil di halaman ringkasan pesanan.
+  5. Setelah pesanan terkonfirmasi, sistem menerbitkan **E-Ticket digital berisi QR Code unik** beserta kode booking yang dapat diunduh/ditunjukkan langsung kepada petugas di lokasi wisata.
+- **Fitur Cek Pesanan:** Wisatawan dapat mengecek ulang status tiket kapan saja melalui menu **Cek Tiket / Pesanan** menggunakan Kode Booking atau Nomor WhatsApp.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 2. User Penjual / Pengelola — Petugas Wisata (Admin Lokasi)
+Petugas wisata bertugas mengelola data destinasi, memvalidasi transaksi masuk, dan melakukan *check-in* pengunjung melalui pemindaian QR Code.
 
-## Agentic Development
+- **Halaman Login Petugas:** `/petugas/login` *(atau `/login` sesuai rute autentikasi aplikasi)*
+- **Kredensial Akun Uji Coba (Demo):**
+  - **Email:** `petugas@wisatasulbar.id`
+  - **Password:** `password123`
+  *(Catatan: Apabila login menggunakan data hasil import database lokal, sesuaikan dengan email & password akun petugas yang terdaftar di tabel `users`).*
+- **Hak Akses & Fitur Utama:**
+  1. **Dashboard Ringkasan:** Melihat statistik penjualan tiket harian, total pendapatan, dan jumlah pengunjung yang sudah *check-in*.
+  2. **Manajemen Destinasi (Katalog Produk):** Menambah, mengubah harga/kuota, atau memperbarui informasi destinasi wisata.
+  3. **Manajemen Transaksi:** Memantau daftar pesanan masuk dari wisatawan dan memverifikasi status pembayaran.
+  4. **Scanner QR Code Validasi Tiket:** Memindai QR Code milik wisatawan menggunakan kamera perangkat (atau input kode tiket manual) untuk memvalidasi keaslian tiket dan mengubah status tiket menjadi *Sudah Digunakan (Used)* agar tidak dapat dipakai ulang.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
 
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
-```
-
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🛠️ Teknologi yang Digunakan
+- **Backend:** PHP 8.3 & Laravel Framework
+- **Frontend:** Blade Template, Tailwind CSS, JavaScript
+- **Database:** MySQL / MariaDB
+- **Fitur Keamanan:** Token CSRF, validasi QR Code sekali pakai (*one-time check-in*), dan enkripsi sesi.
